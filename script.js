@@ -111,20 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- Forms: placeholder submit behavior ----------
-  document.querySelectorAll('form[data-form]').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const type = this.dataset.form;
-      if (type === 'contact') {
-        alert("Thanks for reaching out! (Connect this form to a service like Formspree to actually receive messages.)");
-      } else if (type === 'review') {
-        alert("Thanks for sharing your experience! (Connect this form to a service like Formspree so it emails your review to us.)");
-      }
-      this.reset();
-      starSelect?.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
-    });
-  });
+  // ---------- Contact form now submits for real via Formspree — no JS interception needed ----------
 
   // ---------- Buy / order buttons already link directly to Instagram, no JS needed ----------
 });
