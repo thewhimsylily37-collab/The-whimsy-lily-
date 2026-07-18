@@ -41,6 +41,13 @@
 
 <section class="shop">
   <div class="wrap">
+
+    <div class="gf-promo">
+      <h2>🎁 Help Me Pick a Gift!</h2>
+      <p>Not sure what to gift? Tell us a little about them and we'll help you find something special.</p>
+      <button type="button" class="btn btn-primary" id="gf-open-btn">✨ Find Their Perfect Gift</button>
+    </div>
+
     <div class="shop-toolbar">
       <div class="search-box">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -184,6 +191,14 @@
   <p class="copyright">© 2026 The Whimsy Lily. Handmade with love, stitch by stitch.</p>
 </footer>
 
+<div class="gf-overlay" id="gf-modal">
+  <div class="gf-modal">
+    <button type="button" class="gf-close" id="gf-close-btn" aria-label="Close">✕</button>
+    <div id="gf-modal-body"></div>
+  </div>
+</div>
+
 <script src="script.js"></script>
+<script src="gift-finder.js"></script>
 </body>
 </html>
