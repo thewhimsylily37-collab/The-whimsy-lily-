@@ -8,494 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FFF8F4;
-    --blush:#FBEAEE;
-    --rose:#E39CB8;
-    --rose-deep:#C96E92;
-    --plum:#4A2A3A;
-    --sage:#AFC1A0;
-    --gold:#D8A868;
-    --ink:#3D2430;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-
-  html{scroll-behavior:smooth;}
-
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Quicksand', sans-serif;
-    font-weight:500;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-
-  h1,h2,h3,.display{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    color:var(--plum);
-    letter-spacing:-0.01em;
-  }
-
-  a{color:inherit;text-decoration:none;}
-
-  img{max-width:100%;display:block;}
-
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
-  }
-
-  /* ---------- Stitch divider (signature element) ---------- */
-  .stitch-divider{
-    width:100%;
-    height:34px;
-    display:block;
-  }
-  .stitch-divider svg{width:100%;height:100%;display:block;}
-
-  /* ---------- Header ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,248,244,0.9);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(74,42,58,0.08);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 28px;
-    max-width:1120px; margin:0 auto;
-  }
-  .logo{
-    font-family:'Fraunces', serif;
-    font-size:1.35rem;
-    font-weight:600;
-    color:var(--plum);
-    display:flex; align-items:center; gap:10px;
-  }
-  .logo .mark{
-    width:26px;height:26px;
-    display:inline-block;
-  }
-  nav ul{list-style:none;display:flex;gap:32px;}
-  nav ul a{
-    font-size:0.95rem;
-    font-weight:600;
-    color:var(--plum);
-    position:relative;
-    padding-bottom:4px;
-  }
-  nav ul a::after{
-    content:"";
-    position:absolute; left:0; bottom:0;
-    width:0; height:2px;
-    background:var(--rose-deep);
-    transition:width .25s ease;
-  }
-  nav ul a:hover::after{width:100%;}
-  .nav-cta{
-    background:var(--rose-deep);
-    color:var(--cream) !important;
-    padding:10px 22px;
-    border-radius:100px;
-    font-weight:700;
-    font-size:0.9rem;
-  }
-  .nav-cta:hover{background:var(--plum);}
-  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--plum);cursor:pointer;}
-
-  @media (max-width:760px){
-    nav ul{
-      position:absolute; top:100%; left:0; right:0;
-      flex-direction:column; background:var(--cream);
-      padding:20px 28px; gap:18px;
-      border-bottom:1px solid rgba(74,42,58,0.08);
-      display:none;
-    }
-    nav ul.open{display:flex;}
-    .menu-toggle{display:block;}
-  }
-
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    padding:88px 0 60px;
-    background:
-      radial-gradient(circle at 85% 15%, rgba(227,156,184,0.28), transparent 45%),
-      radial-gradient(circle at 8% 85%, rgba(175,193,160,0.25), transparent 40%);
-  }
-  .hero .wrap{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:56px;
-    align-items:center;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--rose-deep);
-    margin-bottom:18px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:18px; height:2px;
-    background:var(--rose-deep);
-    display:inline-block;
-  }
-  .hero h1{
-    font-size:clamp(2.4rem, 5vw, 3.6rem);
-    line-height:1.08;
-    margin-bottom:22px;
-  }
-  .hero h1 em{
-    font-style:italic;
-    color:var(--rose-deep);
-  }
-  .hero p.lead{
-    font-size:1.12rem;
-    color:#5b3f4c;
-    max-width:46ch;
-    margin-bottom:32px;
-  }
-  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
-  .btn{
-    display:inline-block;
-    padding:14px 30px;
-    border-radius:100px;
-    font-weight:700;
-    font-size:0.98rem;
-    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-  }
-  .btn-primary{
-    background:var(--rose-deep);
-    color:var(--cream);
-    box-shadow:0 8px 20px rgba(201,110,146,0.35);
-  }
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(201,110,146,0.45);}
-  .btn-ghost{
-    background:transparent;
-    color:var(--plum);
-    border:2px solid var(--plum);
-  }
-  .btn-ghost:hover{background:var(--plum); color:var(--cream);}
-
-  .hero-art{
-    position:relative;
-    aspect-ratio:1/1;
-    border-radius:50% 50% 48% 52% / 55% 48% 52% 45%;
-    background:linear-gradient(155deg, var(--blush), var(--rose) 70%);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 30px 60px -20px rgba(74,42,58,0.35);
-  }
-  .hero-art .flower{width:62%;height:62%;}
-  .hero-art .ring{
-    position:absolute; inset:-14px;
-    border:2px dashed rgba(74,42,58,0.25);
-    border-radius:50% 50% 48% 52% / 55% 48% 52% 45%;
-    animation:spin 40s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  @media (max-width:900px){
-    .hero .wrap{grid-template-columns:1fr; text-align:center;}
-    .hero p.lead{margin-left:auto;margin-right:auto;}
-    .btn-row{justify-content:center;}
-    .eyebrow{justify-content:center;}
-    .hero-art{max-width:340px; margin:0 auto;}
-  }
-
-  /* ---------- Section basics ---------- */
-  section{padding:80px 0;}
-  .section-head{max-width:640px; margin-bottom:48px;}
-  .section-head .eyebrow{margin-bottom:12px;}
-  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);}
-  .section-head p{color:#5b3f4c; margin-top:14px; font-size:1.05rem;}
-
-  /* ---------- Story ---------- */
-  .story{background:var(--blush);}
-  .story .wrap{
-    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;
-  }
-  .story-photo{
-    background:linear-gradient(160deg, var(--cream), var(--sage) 120%);
-    border-radius:24px;
-    aspect-ratio:4/5;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 20px 40px -18px rgba(74,42,58,0.3);
-  }
-  .story-photo svg{width:55%;}
-  .story-text h2{margin-bottom:20px;}
-  .story-text p{color:#5b3f4c; margin-bottom:16px; font-size:1.03rem;}
-  .story-text .signature{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-size:1.3rem;
-    color:var(--rose-deep);
-    margin-top:20px;
-  }
-  @media (max-width:860px){
-    .story .wrap{grid-template-columns:1fr;}
-  }
-
-  /* ---------- Shop / Services ---------- */
-  .shop-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:28px;
-  }
-  .shop-card{
-    background:var(--cream);
-    border:1px solid rgba(74,42,58,0.1);
-    border-radius:20px;
-    overflow:hidden;
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .shop-card:hover{transform:translateY(-6px); box-shadow:0 20px 34px -18px rgba(74,42,58,0.35);}
-  .shop-card .thumb{
-    aspect-ratio:1/1;
-    overflow:hidden;
-    border-radius:18px 18px 0 0;
-    background:#fff;
-}
-.shop-card .thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-transition:.3s;
-}
-.shop-card:hover .thumb img{transform:scale(1.05);}
-  .thumb.t1{background:linear-gradient(160deg,#F6D7E1,#E39CB8);}
-  .thumb.t2{background:linear-gradient(160deg,#E4EBDB,#AFC1A0);}
-  .thumb.t3{background:linear-gradient(160deg,#F2E4D0,#D8A868);}
-  .thumb svg{width:48%;}
-  .shop-card .info{padding:22px 22px 26px;}
-  .shop-card h3{font-size:1.15rem; margin-bottom:8px;}
-  .shop-card p{font-size:0.95rem; color:#5b3f4c; margin-bottom:14px;}
-  .shop-card .price{font-weight:700; color:var(--rose-deep); font-family:'Fraunces', serif; font-size:1.1rem;}
-
-  @media (max-width:860px){
-    .shop-grid{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:560px){
-    .shop-grid{grid-template-columns:1fr;}
-  }
-
-  /* ---------- Buy button ---------- */
-  .buy-btn{
-    display:inline-block;
-    width:100%;
-    text-align:center;
-    padding:11px 18px;
-    border-radius:100px;
-    background:var(--rose-deep);
-    color:var(--cream);
-    font-weight:700;
-    font-size:0.92rem;
-    border:none;
-    cursor:pointer;
-    margin-top:12px;
-    transition:background .2s ease, transform .2s ease;
-  }
-  .buy-btn:hover{background:var(--plum); transform:translateY(-2px);}
-  .price-row{display:flex; align-items:center; justify-content:space-between;}
-
-  /* ---------- Testimonials ---------- */
-  .testimonials{background:var(--cream);}
-  .testi-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
-  }
-  .testi-card{
-    background:var(--blush);
-    border-radius:20px;
-    padding:28px;
-    position:relative;
-  }
-  .testi-card .stars{color:var(--gold); font-size:1rem; margin-bottom:14px; letter-spacing:2px;}
-  .testi-card p{font-size:0.98rem; color:#5b3f4c; margin-bottom:18px; font-style:italic;}
-  .testi-who{display:flex; align-items:center; gap:12px;}
-  .testi-avatar{
-    width:38px; height:38px; border-radius:50%;
-    background:linear-gradient(160deg,var(--rose),var(--sage));
-    flex-shrink:0;
-  }
-  .testi-who strong{font-family:'Fraunces', serif; font-size:0.95rem; color:var(--plum); display:block;}
-  .testi-who span{font-size:0.82rem; color:#7c5a68;}
-  @media (max-width:860px){
-    .testi-grid{grid-template-columns:1fr;}
-  }
-
-  /* ---------- Instagram ---------- */
-  .instagram{background:var(--sage); background:linear-gradient(160deg, #E8EFE1, #FBEAEE);}
-  .insta-head{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px;}
-  .insta-head .section-head{margin-bottom:0;}
-  .insta-follow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-weight:700; color:var(--rose-deep);
-    padding:10px 22px; border:2px solid var(--rose-deep); border-radius:100px;
-    font-size:0.92rem;
-  }
-  .insta-follow:hover{background:var(--rose-deep); color:var(--cream);}
-  .insta-grid{
-    display:grid; grid-template-columns:repeat(6,1fr); gap:14px;
-  }
-  .insta-tile{
-    aspect-ratio:1/1; border-radius:14px; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-    transition:transform .25s ease;
-  }
-  .insta-tile:hover{transform:scale(1.04);}
-  .insta-tile svg{width:36%;}
-  .it1{background:linear-gradient(160deg,#F6D7E1,#E39CB8);}
-  .it2{background:linear-gradient(160deg,#E4EBDB,#AFC1A0);}
-  .it3{background:linear-gradient(160deg,#F2E4D0,#D8A868);}
-  .it4{background:linear-gradient(160deg,#E39CB8,#C96E92);}
-  .it5{background:linear-gradient(160deg,#AFC1A0,#8FAE7C);}
-  .it6{background:linear-gradient(160deg,#D8A868,#c0904f);}
-  @media (max-width:760px){
-    .insta-grid{grid-template-columns:repeat(3,1fr);}
-  }
-
-  /* ---------- FAQ ---------- */
-  .faq{background:var(--blush);}
-  .faq-list{max-width:760px;}
-  .faq-item{
-    border-bottom:1px solid rgba(74,42,58,0.15);
-  }
-  .faq-q{
-    width:100%;
-    display:flex; align-items:center; justify-content:space-between;
-    gap:20px;
-    background:none; border:none; cursor:pointer;
-    padding:22px 4px;
-    text-align:left;
-    font-family:'Fraunces', serif;
-    font-size:1.08rem;
-    font-weight:600;
-    color:var(--plum);
-  }
-  .faq-q .plus{
-    flex-shrink:0;
-    width:26px; height:26px;
-    border-radius:50%;
-    background:var(--rose-deep);
-    color:var(--cream);
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.1rem;
-    transition:transform .25s ease;
-  }
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .3s ease;
-  }
-  .faq-a p{padding:0 4px 22px; color:#5b3f4c; font-size:0.98rem; max-width:60ch;}
-
-  /* ---------- Values strip ---------- */
-  .values{background:var(--plum); color:var(--cream);}
-  .values .wrap{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:36px; text-align:center;
-  }
-  .values h3{color:var(--cream); font-size:1.2rem; margin-bottom:10px;}
-  .values p{color:#e8d3dd; font-size:0.95rem;}
-  .values .icon{width:40px;height:40px;margin:0 auto 16px;}
-  @media (max-width:760px){
-    .values .wrap{grid-template-columns:1fr; gap:40px;}
-  }
-
-  /* ---------- Contact ---------- */
-  .contact{
-    background:var(--blush);
-  }
-  .contact .wrap{
-    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
-  }
-  .contact h2{margin-bottom:16px;}
-  .contact p.lead{color:#5b3f4c; margin-bottom:28px; max-width:44ch;}
-  .contact-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
-  .contact-list li{display:flex; gap:12px; align-items:flex-start; font-size:0.98rem;}
-  .contact-list svg{width:20px;height:20px; flex-shrink:0; margin-top:2px; color:var(--rose-deep);}
-
-  form{
-    background:var(--cream);
-    border-radius:20px;
-    padding:32px;
-    box-shadow:0 20px 40px -20px rgba(74,42,58,0.25);
-  }
-  .field{margin-bottom:18px;}
-  .field label{display:block; font-size:0.88rem; font-weight:700; margin-bottom:6px; color:var(--plum);}
-  .field input, .field textarea{
-    width:100%;
-    padding:12px 14px;
-    border-radius:12px;
-    border:1.5px solid rgba(74,42,58,0.18);
-    background:var(--blush);
-    font-family:'Quicksand', sans-serif;
-    font-size:0.98rem;
-    color:var(--ink);
-    resize:vertical;
-  }
-  .field input:focus, .field textarea:focus{
-    outline:3px solid var(--sage);
-    outline-offset:1px;
-    border-color:var(--rose-deep);
-  }
-  .field textarea{min-height:110px;}
-  .submit-btn{
-    width:100%;
-    border:none;
-    cursor:pointer;
-    font-family:'Quicksand', sans-serif;
-  }
-  .form-note{font-size:0.85rem; color:#7c5a68; margin-top:12px; text-align:center;}
-
-  @media (max-width:860px){
-    .contact .wrap{grid-template-columns:1fr;}
-  }
-
-  /* ---------- Footer ---------- */
-  footer{
-    background:var(--plum);
-    color:#e8d3dd;
-    padding:44px 0 30px;
-    text-align:center;
-  }
-  footer .logo{color:var(--cream); justify-content:center; margin-bottom:14px;}
-  footer .foot-links{
-    display:flex; gap:24px; justify-content:center; margin-bottom:24px; flex-wrap:wrap;
-  }
-  footer .foot-links a{font-size:0.9rem; font-weight:600;}
-  footer .foot-links a:hover{color:var(--rose);}
-  footer .copyright{font-size:0.82rem; color:#c9a5b6;}
-
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{
-    outline:3px solid var(--sage);
-    outline-offset:2px;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
   <div class="nav">
-    <a href="#" class="logo">
+    <a href="index.html" class="logo">
       <svg class="mark" viewBox="0 0 24 24" fill="none"><path d="M12 2C9 6 9 9 12 12C15 9 15 6 12 2Z" fill="#C96E92"/><path d="M12 12C9 15 9 18 12 22C15 18 15 15 12 12Z" fill="#AFC1A0"/><circle cx="12" cy="12" r="2.4" fill="#D8A868"/></svg>
       The Whimsy Lily
     </a>
     <nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <ul id="navLinks">
-        <li><a href="#story">Our Story</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="info.html">Info</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
       </ul>
     </nav>
   </div>
@@ -505,11 +35,11 @@ transition:.3s;
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow">Handmade, stitch by stitch</span>
-      <h1>Art you can <em>hold</em>, made by hand, made for everyone.</h1>
-      <p class="lead">The Whimsy Lily is a mother-daughter crochet studio. We believe art shouldn't sit behind glass — it should sit on your shelf, wrap around your shoulders, and live in your everyday.</p>
+      <h1>Art you can <em>hold</em>, made with love, patience, and a little magic.</h1>
+      <p class="lead">Welcome to The Whimsy Lily — a tiny corner of the internet where every handmade piece is created with care. What started as a love for crocheting has grown into a place where simple thread and yarn become keepsakes that make people smile.</p>
       <div class="btn-row">
-        <a href="#shop" class="btn btn-primary">Browse the Shop</a>
-        <a href="#story" class="btn btn-ghost">Meet the Makers</a>
+        <a href="shop.html" class="btn btn-primary">Browse the Shop</a>
+        <a href="about.html" class="btn btn-ghost">Meet the Makers</a>
       </div>
     </div>
     <div class="hero-art">
@@ -528,29 +58,114 @@ transition:.3s;
   </div>
 </section>
 
+<section class="launch-banner">
+  <div class="wrap">
+    <span class="tag">🕷️ New Launch</span>
+    <h3>Spiderman Keychain is here!</h3>
+    <span class="tag">🪢 Limited Edition</span>
+    <h3>Raksha Bandhan Rakhi Collection</h3>
+    <a href="shop.html" class="btn btn-primary">Shop Now</a>
+  </div>
+</section>
+
 <div class="stitch-divider">
   <svg viewBox="0 0 1200 34" preserveAspectRatio="none">
     <path d="M0 17 Q 15 2, 30 17 T 60 17 T 90 17 T 120 17 T 150 17 T 180 17 T 210 17 T 240 17 T 270 17 T 300 17 T 330 17 T 360 17 T 390 17 T 420 17 T 450 17 T 480 17 T 510 17 T 540 17 T 570 17 T 600 17 T 630 17 T 660 17 T 690 17 T 720 17 T 750 17 T 780 17 T 810 17 T 840 17 T 870 17 T 900 17 T 930 17 T 960 17 T 990 17 T 1020 17 T 1050 17 T 1080 17 T 1110 17 T 1140 17 T 1170 17 T 1200 17" stroke="#C96E92" stroke-width="2.5" fill="none" stroke-linecap="round"/>
   </svg>
 </div>
 
-<section class="story" id="story">
+<section class="shop" id="new-arrivals">
   <div class="wrap">
-    <div class="story-photo">
-      <svg viewBox="0 0 200 240" fill="none">
-        <path d="M40 220 Q40 140 100 140 Q160 140 160 220" fill="#E39CB8" stroke="#4A2A3A" stroke-width="2"/>
-        <circle cx="100" cy="95" r="42" fill="#F6D7E1" stroke="#4A2A3A" stroke-width="2"/>
-        <path d="M60 150 Q60 90 100 90 Q140 90 140 150" fill="none" stroke="#4A2A3A" stroke-width="2"/>
-        <circle cx="70" cy="200" r="30" fill="#AFC1A0" stroke="#4A2A3A" stroke-width="2"/>
-        <circle cx="130" cy="200" r="24" fill="#D8A868" stroke="#4A2A3A" stroke-width="2"/>
-      </svg>
+    <div class="section-head">
+      <span class="eyebrow">Just Dropped</span>
+      <h2>New arrivals</h2>
+      <p>Fresh off the hook this month.</p>
     </div>
-    <div class="story-text">
-      <span class="eyebrow">Our Story</span>
-      <h2>Two hands, one hook, a whole lot of heart.</h2>
-      <p>The Whimsy Lily began at a kitchen table — a mother teaching her daughter the first chain stitch, and a daughter refusing to let the craft stay a hobby. What started as an afternoon pastime grew into a shared belief: that handmade art has a place in every home, not just the ones that can afford a gallery piece.</p>
-      <p>Every piece we make passes through both sets of hands. One of us designs, the other refines; one dyes the yarn, the other counts the stitches. It's slow work, and we like it that way.</p>
-      <p class="signature">— with love, the Whimsy Lily duo</p>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <div class="card-badges"><span class="badge badge-new">New</span></div>
+        <div class="thumb t3">
+          <svg viewBox="0 0 100 100" fill="none"><rect x="15" y="42" width="70" height="16" rx="4" fill="#fff" opacity="0.5"/></svg>
+        </div>
+        <div class="info">
+          <h3>Garden Table Runner</h3>
+          <p>A long floral runner to dress up any table for gatherings.</p>
+          <div class="price-row"><span class="price">₹52</span></div>
+          <a href="shop.html#table-runner" class="buy-btn">See Details</a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="card-badges"><span class="badge badge-new">New</span></div>
+        <div class="thumb t1">
+          <img src="spiderman-keychain.png" alt="Spiderman crochet keychain" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="info">
+          <h3>Spiderman Keychain</h3>
+          <p>Our newest amigurumi keychain, fully hand-stitched.</p>
+          <div class="price-row"><span class="price">DM for price</span></div>
+          <a href="shop.html#keychains" class="buy-btn">See Details</a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="card-badges"><span class="badge badge-new">New</span></div>
+        <div class="thumb t2">
+          <img src="rakhi.png" alt="Handmade crochet rakhi" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="info">
+          <h3>Crochet Rakhi</h3>
+          <p>Beads, tassels, and a bond that lasts forever.</p>
+          <div class="price-row"><span class="price">DM for price</span></div>
+          <a href="shop.html#accessories" class="buy-btn">See Details</a>
+        </div>
+      </div>
+      <div class="shop-card">
+        <div class="card-badges"><span class="badge badge-new">New</span></div>
+        <div class="thumb t3">
+          <img src="lily-pad.png" alt="Lily pad crochet coasters" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="info">
+          <h3>Lily Pad Coasters</h3>
+          <p>Nature-inspired coasters with a beaded flower accent.</p>
+          <div class="price-row"><span class="price">₹300</span></div>
+          <a href="shop.html#coasters" class="buy-btn">See Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop coming-soon-section" style="background:var(--blush);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">On the Hook</span>
+      <h2>Coming soon</h2>
+      <p>A sneak peek at what's next — follow along on Instagram to be first to know when these launch.</p>
+    </div>
+    <div class="shop-grid">
+      <div class="shop-card coming-soon">
+        <div class="card-badges"><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="thumb t3">
+          <svg viewBox="0 0 100 100" fill="none"><rect x="15" y="42" width="70" height="16" rx="4" fill="#fff" opacity="0.35"/></svg>
+        </div>
+        <div class="info">
+          <h3>Lily Bloom Table Runner</h3>
+          <p>The matching runner to our best-selling coaster set.</p>
+          <div class="price-row"><span class="price">Coming soon</span></div>
+          <a href="#" class="buy-btn" onclick="return false;">Not Yet Available</a>
+        </div>
+      </div>
+      <div class="shop-card coming-soon">
+        <div class="card-badges"><span class="badge badge-soon">Coming Soon</span></div>
+        <div class="thumb t1">
+          <svg viewBox="0 0 100 100" fill="none"><rect x="35" y="35" width="30" height="30" rx="8" fill="#fff" opacity="0.35"/></svg>
+        </div>
+        <div class="info">
+          <h3>Whimsy Wallet Charm</h3>
+          <p>A pastel charm to personalize your wallet or bag strap.</p>
+          <div class="price-row"><span class="price">Coming soon</span></div>
+          <a href="#" class="buy-btn" onclick="return false;">Not Yet Available</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -561,29 +176,12 @@ transition:.3s;
   </svg>
 </div>
 
-<section class="shop" id="shop">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">From the Hook</span>
-      <h2>A few favorites</h2>
-      <p>Each piece is made to order in small batches. Colors and textures vary slightly — that's the handmade part.</p>
-    </div>
-    <div class="shop-grid">
-<div class="shop-card"><div class="thumb"><img src="sunflower-keychain.png" alt="Sunflower Keychain"></div><div class="info"><h3>🌻 Sunflower Keychain</h3><p>Handmade crochet sunflower keychain.</p><div class="price-row"><span class="price">₹50</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-<div class="shop-card"><div class="thumb"><img src="bow-keychain.png" alt="Bow Keychain"></div><div class="info"><h3>🎀 Bow Keychain</h3><p>Adorable crochet bow keychain.</p><div class="price-row"><span class="price">₹30</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-<div class="shop-card"><div class="thumb"><img src="bouquet-keychain.png" alt="Bouquet Keychain"></div><div class="info"><h3>💐 Bouquet Keychain</h3><p>Mini crochet bouquet keychain.</p><div class="price-row"><span class="price">₹30</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-<div class="shop-card"><div class="thumb"><img src="daisy-keychain.png" alt="Daisy Keychain"></div><div class="info"><h3>🌼 Daisy Keychain</h3><p>Beautiful handmade daisy keychain.</p><div class="price-row"><span class="price">₹50</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-<div class="shop-card"><div class="thumb"><img src="lily-pad.png" alt="Lily Pad"></div><div class="info"><h3>🍃 Lily Pad</h3><p>Handcrafted crochet lily pad.</p><div class="price-row"><span class="price">₹300</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-<div class="shop-card"><div class="thumb"><img src="coaster-bouquet.png" alt="Coaster cum Bouquet"></div><div class="info"><h3>🌸 Coaster cum Bouquet</h3><p>A bouquet that unfolds into a coaster.</p><div class="price-row"><span class="price">₹300</span></div><a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" class="buy-btn">Message to Order</a></div></div>
-</div></div>
-</section>
-
 <section class="values" id="values">
   <div class="wrap">
     <div>
       <svg class="icon" viewBox="0 0 40 40" fill="none"><path d="M20 32C20 32 6 23 6 13.5C6 8 10 5 14 5C17 5 20 7 20 11C20 7 23 5 26 5C30 5 34 8 34 13.5C34 23 20 32 20 32Z" fill="#E39CB8"/></svg>
       <h3>Made with intention</h3>
-      <p>No factory lines. Every stitch is counted by hand, by us, in our own home.</p>
+      <p>No factory lines. Every stitch is counted by hand, with care.</p>
     </div>
     <div>
       <svg class="icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="15" fill="#AFC1A0"/><path d="M20 12v8l6 4" stroke="#4A2A3A" stroke-width="2" stroke-linecap="round"/></svg>
@@ -610,32 +208,8 @@ transition:.3s;
       <span class="eyebrow">Kind Words</span>
       <h2>What our customers say</h2>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"The coasters are even prettier in person. You can tell real care went into every stitch."</p>
-        <div class="testi-who">
-          <div class="testi-avatar"></div>
-          <div><strong>Priya M.</strong><span>Verified buyer</span></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"Ordered a custom amigurumi of my dog and cried a little when it arrived. Worth every penny."</p>
-        <div class="testi-who">
-          <div class="testi-avatar"></div>
-          <div><strong>Jordan T.</strong><span>Verified buyer</span></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <p>"My market tote gets compliments everywhere I go. Sturdy, beautiful, and clearly handmade."</p>
-        <div class="testi-who">
-          <div class="testi-avatar"></div>
-          <div><strong>Alina R.</strong><span>Verified buyer</span></div>
-        </div>
-      </div>
-    </div>
+    <p style="text-align:center; color:#5b3f4c;">Be the first to share your experience!</p>
+    <p style="text-align:center; margin-top:20px;"><a href="contact.html#review" class="btn btn-ghost">Share Your Own Review</a></p>
   </div>
 </section>
 
@@ -646,142 +220,39 @@ transition:.3s;
         <span class="eyebrow">Follow Along</span>
         <h2>Fresh off the hook</h2>
       </div>
-      <a href="https://instagram.com/thewhimsylily.store" class="insta-follow" target="_blank" rel="noopener">Follow @thewhimsylily</a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-follow" target="_blank" rel="noopener">Follow @thewhimsylily.store</a>
     </div>
     <div class="insta-grid">
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it1" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" fill="#fff" opacity="0.5"/></svg></a>
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it2" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" opacity="0.5"/></svg></a>
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it3" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><path d="M50 25 L70 65 L30 65 Z" fill="#fff" opacity="0.5"/></svg></a>
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it4" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" fill="#fff" opacity="0.5"/></svg></a>
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it5" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" opacity="0.5"/></svg></a>
-      <a href="https://instagram.com/thewhimsylily" class="insta-tile it6" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><path d="M50 25 L70 65 L30 65 Z" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it1" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it2" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it3" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><path d="M50 25 L70 65 L30 65 Z" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it4" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="30" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it5" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" opacity="0.5"/></svg></a>
+      <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="insta-tile it6" target="_blank" rel="noopener"><svg viewBox="0 0 100 100" fill="none"><path d="M50 25 L70 65 L30 65 Z" fill="#fff" opacity="0.5"/></svg></a>
     </div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Good to Know</span>
-      <h2>Frequently asked questions</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <button class="faq-q"><span>How long does an order take to ship?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Most in-stock items ship within 3–5 business days. Custom orders, like portrait amigurumi, typically take 1–2 weeks since each one is made from scratch.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Do you take custom color requests?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Always. Message us with your color palette or inspiration photo and we'll let you know what's possible before you order.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>How do I place an order?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Tap "Message to Order" on any item to open a chat with us on Instagram. We'll confirm details, availability, and arrange payment directly with you there.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Do you offer returns or exchanges?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Ready-made items can be returned within 14 days in original condition. Custom pieces are final sale since they're made just for you.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Do you ship internationally?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Yes! International shipping is calculated at checkout based on your location.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="contact-copy">
-      <span class="eyebrow">Say Hello</span>
-      <h2>Let's make something together.</h2>
-      <p class="lead">Custom order, wholesale inquiry, or just want to say hi — we read every message ourselves.</p>
-      <ul class="contact-list">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 7 9-7"/><path d="M21 6v12H3V6"/></svg>
-          <span>thewhimsylily37@gmail.com</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 18h.01"/></svg>
-          <span>@thewhimsylily.stores on Instagram</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span>Orders typically ship within 1–2 weeks</span>
-        </li>
-      </ul>
-    </div>
-    <form>
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required>
-      </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us what you're dreaming up..." required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
-      <p class="form-note">This form is a template — connect it to a service like Formspree to receive messages.</p>
-    </form>
   </div>
 </section>
 
 <footer>
-  <a href="#" class="logo">
+  <a href="index.html" class="logo">
     <svg class="mark" viewBox="0 0 24 24" fill="none"><path d="M12 2C9 6 9 9 12 12C15 9 15 6 12 2Z" fill="#E39CB8"/><path d="M12 12C9 15 9 18 12 22C15 18 15 15 12 12Z" fill="#AFC1A0"/><circle cx="12" cy="12" r="2.4" fill="#D8A868"/></svg>
     The Whimsy Lily
   </a>
+  <div class="social-row">
+    <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+    <a href="mailto:hello@thewhimsylily.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 7 9-7"/><path d="M21 6v12H3V6"/></svg></a>
+  </div>
   <div class="foot-links">
-    <a href="#story">Our Story</a>
-    <a href="#shop">Shop</a>
-    <a href="#values">Values</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="info.html">Info</a>
+    <a href="contact.html">Contact</a>
   </div>
   <p class="copyright">© 2026 The Whimsy Lily. Handmade with love, stitch by stitch.</p>
 </footer>
 
-<script>
-  const toggle = document.getElementById('menuToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-  });
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    links.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const btn = item.querySelector('.faq-q');
-    const answer = item.querySelector('.faq-a');
-    if(item.classList.contains('open')){
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-    }
-    btn.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        openItem.classList.remove('open');
-        openItem.querySelector('.faq-a').style.maxHeight = null;
-      });
-      if(!isOpen){
-        item.classList.add('open');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-
-  document.querySelector('form').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert("Thanks for reaching out! (Connect this form to a service like Formspree to actually receive messages.)");
-    this.reset();
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
