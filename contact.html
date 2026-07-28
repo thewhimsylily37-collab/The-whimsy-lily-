@@ -60,21 +60,21 @@
       </ul>
       <a href="https://www.instagram.com/thewhimsylily.store?igsh=aHZtcDF5eWR3cjFm" class="btn btn-primary" target="_blank" rel="noopener" style="margin-top:24px; display:inline-block;">Message @thewhimsylily.store</a>
     </div>
-    <form data-form="contact">
+    <form action="https://formspree.io/f/thewhimsylily37@gmail.com" method="POST">
       <div class="field">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your name" required>
       </div>
       <div class="field">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <input type="email" id="email" name="_replyto" placeholder="you@example.com" required>
       </div>
       <div class="field">
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Tell us what you're dreaming up..." required></textarea>
       </div>
+      <input type="hidden" name="_subject" value="New message from The Whimsy Lily website">
       <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
-      <p class="form-note">This form is a template — connect it to a service like Formspree to receive messages by email.</p>
     </form>
   </div>
 </section>

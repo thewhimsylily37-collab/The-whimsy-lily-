@@ -115,3 +115,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Buy / order buttons already link directly to Instagram, no JS needed ----------
 });
+
+// ---------- Image lightbox: tap any product photo to view full size ----------
+document.addEventListener('DOMContentLoaded', () => {
+  // Build lightbox overlay once
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.id = 'lightbox-overlay';
+  overlay.innerHTML = `
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <img src="" alt="" id="lightbox-img">
+  `;
+  document.body.appendChild(overlay);
+
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    overlay.classList.add('lightbox-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('lightbox-open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  // Make every product photo (not decorative SVG icons) tappable to zoom
+  document.querySelectorAll('.shop-card .thumb img, .hero-art img, .story .photo img, .blog-card .thumb img').forEach(img => {
+    img.classList.add('zoomable');
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+});

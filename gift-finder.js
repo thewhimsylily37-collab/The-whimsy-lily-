@@ -381,14 +381,12 @@ function gfRenderResults() {
   const cardsHtml = recs.map((r, i) => {
     const pct = Math.min(100, Math.round((r.score / maxScore) * 100));
     const label = i === 0 && pct >= 60 ? "Perfect Match" : `${pct}% Match`;
-    const priceLabel = r.product.price ? `₹${r.product.price}` : "DM for price";
     return `
       <div class="gf-result-card">
         <div class="gf-result-badge">${label}</div>
         <img src="${r.product.image}" alt="${r.product.name}" class="gf-result-img">
         <div class="gf-result-info">
           <h4>${r.product.name}</h4>
-          <p class="gf-result-price">${priceLabel}</p>
           <p class="gf-result-desc">${r.product.description}</p>
           <p class="gf-result-why">💡 ${gfWhyMatch(r.product, gfAnswers)}</p>
           <a href="${r.product.link}" target="_blank" rel="noopener" class="btn btn-primary gf-view-btn">🛍️ View Gift</a>
